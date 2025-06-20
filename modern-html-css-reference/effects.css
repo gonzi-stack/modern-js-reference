@@ -1,0 +1,86 @@
+/* effects.css */
+:root {
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+  --gradient-danger: linear-gradient(135deg, var(--danger-500), var(--danger-700));
+  --gradient-success: linear-gradient(135deg, var(--success-500), var(--success-700));
+  
+  /* Efectos de blur */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
+}
+
+/* Utilidades de sombra */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow { box-shadow: var(--shadow); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-none { box-shadow: none; }
+
+/* Utilidades de gradiente */
+.bg-gradient-primary { background-image: var(--gradient-primary); }
+.bg-gradient-danger { background-image: var(--gradient-danger); }
+.bg-gradient-success { background-image: var(--gradient-success); }
+
+/* Utilidades de blur */
+.backdrop-blur-sm { backdrop-filter: var(--blur-sm); }
+.backdrop-blur-md { backdrop-filter: var(--blur-md); }
+.backdrop-blur-lg { backdrop-filter: var(--blur-lg); }
+
+/* Efectos de hover */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-shadow:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Efectos de transición */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.transition-colors {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
