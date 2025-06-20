@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta Moderna</title>
+  <link rel="stylesheet" href="alert-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <button id="showAlert" class="btn">Mostrar Alerta</button>
+
+  <div id="alertContainer"></div>
+
+  <script>
+    function showAlert(options) {
+      const {
+        type = 'info',
+        title = 'Notificación',
+        message = 'Este es un mensaje de alerta',
+        duration = 5000,
+        dismissible = true
+      } = options;
+      
+      const alert = document.createElement('div');
+      alert.className = `alert ${type}`;
+      alert.setAttribute('role', 'alert');
+      
+      // Iconos por tipo
+      const icons = {
+        info: 'fa-circle-info',
+        success: 'fa-circle-check',
+        warning: 'fa-triangle-exclamation',
+        error: 'fa-circle-exclamation'
+      };
+      
+      alert.innerHTML = `
+        <div class="alert-icon">
+          <i class="fa-solid ${icons[type]}"></i>
+        </div>
+        <div class="alert-content">
+          <h3 class="alert-title">${title}</h3>
+          <p class="alert-message">${message}</p>
+        </div>
+        ${dismissible ? 
+          `<button class="alert-close" aria-label="Cerrar">
+            <i class="fa-solid fa-xmark"></i>
+          </button>` : ''}
+      `;
+      
+      document.getElementById('alertContainer').appendChild(alert);
+      
+      // Animación de entrada
+      setTimeout(() => {
+        alert.classList.add('show');
+      }, 10);
+      
+      // Cierre automático
+      if (duration) {
+        setTimeout(() => {
+          closeAlert(alert);
+        }, duration);
+      }
+      
+      // Cierre manual
+      if (dismissible) {
+        alert.querySelector('.alert-close').addEventListener('click', () => {
+          closeAlert(alert);
+        });
+      }
+    }
+    
+    function closeAlert(alert) {
+      alert.classList.remove('show');
+      alert.classList.add('hide');
+      
+      setTimeout(() => {
+        alert.remove();
+      }, 300);
+    }
+    
+    // Ejemplo de uso
+    document.getElementById('showAlert').addEventListener('click', () => {
+      showAlert({
+        type: 'success',
+        title: '¡Operación Exitosa!',
+        message: 'Los cambios se han guardado correctamente.',
+        duration: 3000
+      });
+    });
+  </script>
+</body>
+</html>
