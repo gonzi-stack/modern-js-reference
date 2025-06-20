@@ -1,0 +1,135 @@
+:root {
+  --info: #3498db;
+  --success: #2ecc71;
+  --warning: #f39c12;
+  --error: #e74c3c;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s ease;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 1rem auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: var(--shadow);
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.alert.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.alert.hide {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.alert-icon {
+  margin-right: 1.25rem;
+  font-size: 1.8rem;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.alert-message {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.alert-close {
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.alert-close:hover {
+  color: var(--dark);
+}
+
+/* Tipos de alerta */
+.alert.info {
+  border-left: 4px solid var(--info);
+}
+
+.alert.info .alert-icon {
+  color: var(--info);
+}
+
+.alert.success {
+  border-left: 4px solid var(--success);
+}
+
+.alert.success .alert-icon {
+  color: var(--success);
+}
+
+.alert.warning {
+  border-left: 4px solid var(--warning);
+}
+
+.alert.warning .alert-icon {
+  color: var(--warning);
+}
+
+.alert.error {
+  border-left: 4px solid var(--error);
+}
+
+.alert.error .alert-icon {
+  color: var(--error);
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.alert.pulse {
+  animation: pulse 0.5s ease;
+}
